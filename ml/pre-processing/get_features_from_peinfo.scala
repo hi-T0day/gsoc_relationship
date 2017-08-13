@@ -1,4 +1,3 @@
-%gsocspark
 import com.datastax.spark.connector._
 import play.api.libs.json.Json
 import play.api.libs.json._
@@ -19,10 +18,9 @@ def unzip(x: Array[Byte]) : String = {
     val output = scala.io.Source.fromInputStream(inputStream).mkString
     return output
 }
-val List17 = Array.iterate(0.0,17)(a=>a*0)
 def findAllIntinpeinfo( peinfo_json_results : JsLookupResult, time: Double): Array[Double]= {
     val entropy = peinfo_json_results \\ "entropy" ; val virt_address = peinfo_json_results \\ "virt_address"; val virt_size = peinfo_json_results \\ "virt_size"; val size = peinfo_json_results \\ "size";
-    var i= 0; var List  = List17
+    var i= 0; var List  = Array.iterate(0.0,17)(a=>a*0)
     for (k <- ( peinfo_json_results \\ "section_name")){
         k.as[String] match {
             case ".text\u0000\u0000\u0000" => { List(0)=entropy(i).as[Double]; List(1)=Integer.parseInt(virt_address(i).as[String].substring(2), 16).toDouble; List(2)=virt_size(i).as[Double]; List(3)=size(i).as[Double] }

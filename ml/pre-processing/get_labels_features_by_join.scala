@@ -3,7 +3,7 @@ case class peinfo_final_array_rdd_class(sha256:String, array_results :Array[Doub
 case class objdump_binaray_final_array_rdd_class(sha256: String, array_results: Array[Double])
 import PreProcessingConfig._
 
-val VT_sample_label_rdd = spark.read.format("parquet").load(VT_sample_label_file).rdd.map(row => new VT_sample_label_rdd_class(row(0).toString,row(1).asInstanceOf[Double]))
+val VT_sample_label_rdd = spark.read.format("parquet").load(VT_sample_label_file).rdd.map(row => new VT_sample_label_rdd_class(row(0).toString,row(1).asInstanceOf[Seq[Double]].toArray))
 val VT_sample_label_rdd_before_join = VT_sample_label_rdd.map(x=>(x.sha256,x.label))
 
 val peinfo_final_array_rdd = spark.read.format("parquet").load(peinfo_final_array_file).rdd.map(row => new peinfo_final_array_rdd_class(row(0).toString,row(1).asInstanceOf[Seq[Double]].toArray))

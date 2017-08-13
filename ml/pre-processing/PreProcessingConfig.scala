@@ -1,6 +1,6 @@
-object PreProcessingConfig {
-
-  val keyspacekeyspace = "gsoc3"
+object PreProcessingConfig extends Serializable{
+  val kmeans_cluster_number = 10
+  val keyspace = "gsoc3"
   val service_name_table = "results_meta_by_service_name"
   val sha256_table = "results_data_by_sha256"
   val VT_signatures_prefix_suffix_file = "./prefix.txt"
