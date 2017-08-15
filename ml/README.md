@@ -25,5 +25,5 @@ We get a dll\_function list by counting the number of dll\_function and keep the
 By objdump service, we can get the opcodes of the malware. The file: x86Opcodes contains the normal opcodes. We extract the top 10000 opcodes and convert them into int according to opcodes' sequence in the file. 
 
 ## Neural Network
-![GitHub Logo](/images/NN-figure.png)  
+![GitHub Logo](./images/NN-figure.png)  
 The figure above shows the framework of the neural network. The peinfo data are trained by multi-layer perceptron, while the objdump are trained by convolution neural network. Finally, we concatenate the two one-dimensional vectors and use softmax layer to get the prediction label.
