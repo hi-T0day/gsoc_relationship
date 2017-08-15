@@ -3,7 +3,7 @@ object PreProcessingConfig extends Serializable{
   val keyspace = "gsoc3"
   val service_name_table = "results_meta_by_service_name"
   val sha256_table = "results_data_by_sha256"
-  val VT_signatures_prefix_suffix_file = "./prefix.txt"
+  val VT_signatures_prefix_suffix_file = "./prefix_suffix.txt"
   val objdump_x86Opcodes_file = "./x86Opcodes"
 
   val VT_sample_signatures_final_array_file = "./VT_sample_signatures_final_array.parquet" 
