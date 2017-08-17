@@ -1,0 +1,17 @@
+[NN]
+mode = train
+input_file= 8_12_VT_peinfo_objdump_join.parquet
+model = NN_model
+output = predictions
+batch_size = 10
+epochs = 1
+cluster_size = 3
+steps= 1000
+
+# If you want to predict the label of the labeled data.
+# change the mode:
+# mode = inference
+
+# If you want to predict the label of the labeled data.
+# change the mode:
+# mode = predict

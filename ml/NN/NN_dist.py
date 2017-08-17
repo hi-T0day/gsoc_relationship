@@ -152,12 +152,18 @@ def map_fun(args, ctx):
             if sv.is_chief:
               summary_writer.add_summary(summary, step)
           
-          else: 
+          elif args.mode == "inference": 
             labels, preds, acc = sess.run([label, prediction, accuracy], feed_dict=feed)
-            results = ["{0} Label: {1}, Prediction: {2}".format(datetime.now().isoformat(), l, p) for l,p in zip(labels,preds)]
+            results = ["Label: {0}, Prediction: {1}".format(l, p) for l,p in zip(labels,preds)]
             tf_feed.batch_results(results)
             print("acc: {0}".format(acc))
 
+          else:
+            preds= sess.run(prediction, feed_dict={x_mlp: batch_mlp, x_cnn: batch_xs})
+            results = ["Sha256: {0}, Prediction: {1}".format(l, p) for l,p in zip(batch_ys,preds)]
+            tf_feed.batch_results(results)
+            print(results)
+            
       if sv.should_stop() or step >= args.steps:
         tf_feed.terminate()
 
