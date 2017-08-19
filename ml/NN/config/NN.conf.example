@@ -1,4 +1,8 @@
 [NN]
+# There are three modes here(train/inference/predict). 
+# 1). train mode is used to train a model for neural network
+# 2). inference mode is used to check the accuracy of the labeled data.
+# 3). predict mode is used to predict the data without label.
 mode = train
 input_file= 8_12_VT_peinfo_objdump_join.parquet
 model = NN_model
@@ -7,11 +11,3 @@ batch_size = 10
 epochs = 1
 cluster_size = 3
 steps= 1000
-
-# If you want to predict the label of the labeled data.
-# change the mode:
-# mode = inference
-
-# If you want to predict the label of the labeled data.
-# change the mode:
-# mode = predict

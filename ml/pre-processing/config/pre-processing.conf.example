@@ -1,0 +1,15 @@
+preprocess{
+  kmeans_cluster_number = 10
+  keyspace = "gsoc3"
+  service_name_table = "results_meta_by_service_name"
+  sha256_table = "results_data_by_sha256"
+  VT_signatures_prefix_suffix_file = "prefix.txt"
+  objdump_x86Opcodes_file = "x86Opcodes"
+
+  VT_sample_signatures_final_array_file = "VT_sample_signatures_final_array.parquet" 
+  VT_sample_label_file = "VT_sample_label.parquet"
+  peinfo_final_array_file = "peinfo_final_array.parquet"
+  objdump_binaray_final_array_file = "objdump_binaray_final_array.parquet"
+  VT_peinfo_objdump_join_file = "VT_peinfo_objdump_join.parquet"
+}  
+
