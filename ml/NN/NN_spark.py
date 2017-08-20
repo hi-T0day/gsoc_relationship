@@ -55,7 +55,7 @@ num_ps = 1
 
 class argsClass:
     def __init__(self):
-		conf = ConfigFactory.parse_file("./config/NN.conf")
+		conf = ConfigFactory.parse_file("../config/ml.conf")
 		self.mode = conf["NN.mode"]     	
 		self.input_file = conf["NN.input_file"]
 		self.model = conf["NN.model"]

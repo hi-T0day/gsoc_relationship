@@ -1,6 +1,6 @@
 import com.typesafe.config._
 import java.io._
-val conf = ConfigFactory.parseFile(new File("config/pre-processing.conf"))
+val conf = ConfigFactory.parseFile(new File("../config/pre-processing.conf"))
 object PreProcessingConfig extends Serializable{
   val kmeans_cluster_number = conf.getInt("preprocess.kmeans_cluster_number");
   val keyspace = conf.getString("preprocess.keyspace")
