@@ -45,7 +45,7 @@ from datetime import datetime
 
 from tensorflowonspark import TFCluster
 import NN_dist
-import ConfigParser  
+from pyhocon import ConfigFactory 
 
 sc = SparkContext(conf=SparkConf().setAppName("NN_spark"))
 sqlContext = SQLContext(sc)
@@ -55,16 +55,15 @@ num_ps = 1
 
 class argsClass:
     def __init__(self):
-		conf = ConfigParser.ConfigParser() 
-		conf.read("./config/NN.conf")
-		self.mode = conf.get("NN", "mode")     	
-		self.input_file = conf.get("NN", "input_file")
-		self.model = conf.get("NN", "model")  
-		self.output = conf.get("NN", "output")  
-		self.batch_size = conf.getint("NN", "batch_size")  
-		self.epochs = conf.getint("NN", "epochs")
-		self.cluster_size = conf.getint("NN", "cluster_size")
-		self.steps = conf.getint("NN", "steps")
+		conf = ConfigFactory.parse_file("./config/NN.conf")
+		self.mode = conf["NN.mode"]     	
+		self.input_file = conf["NN.input_file"]
+		self.model = conf["NN.model"]
+		self.output = conf["NN.output"]
+		self.batch_size = conf["NN.batch_size"]  
+		self.epochs = conf["NN.epochs"]
+		self.cluster_size = conf["NN.cluster_size"]
+		self.steps = conf["NN.steps"]
 args = argsClass()
 
 print("{0} ===== Start".format(datetime.now().isoformat()))
