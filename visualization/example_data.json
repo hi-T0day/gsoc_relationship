@@ -1,0 +1,312 @@
+{
+  "name": "599eb0ff208a37dc9db2f4f9",
+  "all_features": [
+    "domain",
+    "pehash",
+    "imphash",
+    "ip"
+  ],
+  "children": [
+    {
+      "name": "599eb0ff6a82f692f21c903a",
+      "final_score": "81.90",
+      "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspips<br />&nbsp&nbsp&nbspPehash similarity is:&nbsp66&nbsp<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp69"
+    },
+    {
+      "name": "599eb0ff7b26e1373bb1c1bd",
+      "final_score": "80.67",
+      "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp3&nbspips<br />&nbsp&nbsp&nbspPehash similarity is:&nbsp65&nbsp<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp69"
+    },
+    {
+      "name": "599eb0ffa2225885663ee3bb",
+      "final_score": "83.93",
+      "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspips<br />&nbsp&nbsp&nbspPehash similarity is:&nbsp90&nbsp<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp73"
+    },
+    {
+      "name": [
+        "domain",
+        "pehash",
+        "imphash"
+      ],
+      "final_score": "88.99",
+      "children": [
+        {
+          "name": "599eb0ff2658debb81590605",
+          "final_score": "70.44",
+          "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspdomains<br />&nbsp&nbsp&nbspPehash similarity is:&nbsp70&nbsp<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp63"
+        },
+        {
+          "name": "599eb0ff6b866d1f0aa5ce12",
+          "final_score": "68.99",
+          "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspdomains<br />&nbsp&nbsp&nbspPehash similarity is:&nbsp69&nbsp<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp57"
+        },
+        {
+          "name": "599eb0ff6f2793e3154571fd",
+          "final_score": "88.99",
+          "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspdomains<br />&nbsp&nbsp&nbspPehash similarity is:&nbsp79&nbsp<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp92"
+        },
+        {
+          "name": [
+            "domain",
+            "pehash"
+          ],
+          "final_score": "63.04",
+          "children": [
+            {
+              "name": "599eb0ff6f3979058e26c962",
+              "final_score": "54.08",
+              "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp1&nbspdomains<br />&nbsp&nbsp&nbspPehash similarity is:&nbsp72&nbsp<br />"
+            },
+            {
+              "name": [
+                "domain"
+              ],
+              "final_score": "63.04",
+              "children": [
+                {
+                  "name": "599eb0ff0ba8bc78a1455bae",
+                  "final_score": "52.90",
+                  "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspdomains<br />"
+                },
+                {
+                  "name": "599eb0ff0d4665b3f1ca2ab6",
+                  "final_score": "52.68",
+                  "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp5&nbspdomains<br />"
+                },
+                {
+                  "name": "599eb0ff8df24593c3d04e0e",
+                  "final_score": "63.04",
+                  "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp1&nbspdomains<br />"
+                }
+              ]
+            },
+            {
+              "name": [
+                "pehash"
+              ],
+              "final_score": "58.67",
+              "children": [
+                {
+                  "name": "599eb100ca4c09733b697fad",
+                  "final_score": "58.67",
+                  "indicator_socre": "&nbsp&nbsp&nbspPehash similarity is:&nbsp59&nbsp<br />"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": [
+            "domain",
+            "imphash"
+          ],
+          "final_score": "83.42",
+          "children": [
+            {
+              "name": "599eb1000cfcdddf4bd6bfbb",
+              "final_score": "83.42",
+              "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp8&nbspdomains<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp73"
+            },
+            {
+              "name": "599eb100c9546570455484df",
+              "final_score": "82.19",
+              "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp3&nbspdomains<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp71"
+            },
+            {
+              "name": [
+                "imphash"
+              ],
+              "final_score": "69.33",
+              "children": [
+                {
+                  "name": "599eb100faceeefe1defd438",
+                  "final_score": "69.33",
+                  "indicator_socre": "&nbsp&nbsp&nbspImphash similarity is:&nbsp62"
+                },
+                {
+                  "name": "599eb10095c104464a360010",
+                  "final_score": "52.27",
+                  "indicator_socre": "&nbsp&nbsp&nbspImphash similarity is:&nbsp50"
+                },
+                {
+                  "name": "599eb100b3437ac53e6aac87",
+                  "final_score": "54.61",
+                  "indicator_socre": "&nbsp&nbsp&nbspImphash similarity is:&nbsp51"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": [
+            "pehash",
+            "imphash"
+          ],
+          "final_score": "85.13",
+          "children": [
+            {
+              "name": "599eb1008913d211391e6978",
+              "final_score": "85.13",
+              "indicator_socre": "&nbsp&nbsp&nbspPehash similarity is:&nbsp68&nbsp<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp78"
+            },
+            {
+              "name": "599eb1003060e42d64728677",
+              "final_score": "58.96",
+              "indicator_socre": "&nbsp&nbsp&nbspPehash similarity is:&nbsp67&nbsp<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp63"
+            },
+            {
+              "name": "599eb100cbe0305187abcc2f",
+              "final_score": "74.86",
+              "indicator_socre": "&nbsp&nbsp&nbspPehash similarity is:&nbsp100&nbsp<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp68"
+            },
+            {
+              "name": "599eb100b7c0fe20d6f4cf2c",
+              "final_score": "52.93",
+              "indicator_socre": "&nbsp&nbsp&nbspPehash similarity is:&nbsp47&nbsp<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp51"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": [
+        "domain",
+        "pehash",
+        "ip"
+      ],
+      "final_score": "94.62",
+      "children": [
+        {
+          "name": "599eb100fddc455b6ca699e4",
+          "final_score": "93.15",
+          "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp5&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspips<br />&nbsp&nbsp&nbspPehash similarity is:&nbsp124&nbsp<br />"
+        },
+        {
+          "name": "599eb100597bf5aa48a37fda",
+          "final_score": "82.79",
+          "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspips<br />&nbsp&nbsp&nbspPehash similarity is:&nbsp83&nbsp<br />"
+        },
+        {
+          "name": [
+            "domain",
+            "ip"
+          ],
+          "final_score": "94.62",
+          "children": [
+            {
+              "name": "599eb1006cb4447e9a2efe47",
+              "final_score": "94.62",
+              "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp3&nbspips<br />"
+            },
+            {
+              "name": "599eb100f9c7caa7689d9e5a",
+              "final_score": "71.10",
+              "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp1&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp1&nbspips<br />"
+            },
+            {
+              "name": "599eb1007623f349a4402e73",
+              "final_score": "53.27",
+              "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp3&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp1&nbspips<br />"
+            },
+            {
+              "name": [
+                "ip"
+              ],
+              "final_score": "60.30",
+              "children": [
+                {
+                  "name": "599eb100329fb907154227d7",
+                  "final_score": "60.30",
+                  "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp6&nbspips<br />"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": [
+            "pehash",
+            "ip"
+          ],
+          "final_score": "61.47",
+          "children": [
+            {
+              "name": "599eb100f3c2bd8b0a3db7ba",
+              "final_score": "61.47",
+              "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp1&nbspips<br />&nbsp&nbsp&nbspPehash similarity is:&nbsp82&nbsp<br />"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": [
+        "domain",
+        "imphash",
+        "ip"
+      ],
+      "final_score": "79.29",
+      "children": [
+        {
+          "name": "599eb100837a5ad13bba4122",
+          "final_score": "65.58",
+          "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspips<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp78"
+        },
+        {
+          "name": "599eb1003f0ba0a3bb9a8087",
+          "final_score": "75.63",
+          "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp4&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp3&nbspips<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp64"
+        },
+        {
+          "name": "599eb100f02a4391e85d3f2b",
+          "final_score": "79.29",
+          "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp8&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspips<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp85"
+        },
+        {
+          "name": [
+            "imphash",
+            "ip"
+          ],
+          "final_score": "66.53",
+          "children": [
+            {
+              "name": "599eb1004b01b5ffda48a0ab",
+              "final_score": "66.53",
+              "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspips<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp53"
+            },
+            {
+              "name": "599eb1002ca2a2e6edde9d6e",
+              "final_score": "60.22",
+              "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspips<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp63"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": [
+        "domain",
+        "imphash",
+        "ip"
+      ],
+      "final_score": "78.87",
+      "children": [
+        {
+          "name": "599eb100287e38857c6d8887",
+          "final_score": "66.66",
+          "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp3&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp3&nbspips<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp85"
+        },
+        {
+          "name": "599eb1002195d39ffbb35b38",
+          "final_score": "69.58",
+          "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp7&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspips<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp65"
+        },
+        {
+          "name": "599eb100b1c0209afa98e3c1",
+          "final_score": "78.87",
+          "indicator_socre": "&nbsp&nbsp&nbspCommunicated with:&nbsp2&nbspdomains<br />&nbsp&nbsp&nbspCommunicated with:&nbsp3&nbspips<br />&nbsp&nbsp&nbspImphash similarity is:&nbsp85"
+        }
+      ]
+    }
+  ]
+}
