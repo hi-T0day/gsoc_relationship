@@ -733,6 +733,27 @@ treeJSON = d3.json("example_data.json", function(error, treeData) {
                     .attr("class","artefactunselected")
                 });    
 
+
+    var copyrightText = baseSvg.append("text")
+                            .datum(["@ Copyright: This webpage is reference Rob Schmuecker's work:"])
+                            .attr("class","copyrightText")
+                            .attr("x",0)
+                            .attr("y",0)
+                            .attr("transform",function(d,i){
+                                return "translate(" + 10 + "," + 200   + ")";
+                            })
+                            .text(function(d) {return d;});
+
+    var copyrightText = baseSvg.append("text")
+                            .datum(["http://bl.ocks.org/robschmuecker/7880033"])
+                            .attr("class","copyrightText")
+                            .attr("x",0)
+                            .attr("y",0)
+                            .attr("transform",function(d,i){
+                                return "translate(" + 10 + "," + 215   + ")";
+                            })
+                            .text(function(d) {return d;});
+
     root = treeData;
     root.x0 = viewerHeight / 2;
     root.y0 = 0;
