@@ -27,9 +27,12 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Author: Rob Schmuecker <robert.schmuecker@gmail.com>
 Link: http://bl.ocks.org/robschmuecker/7880033 (D3.js Drag and Drop, Zoomable, Panning, Collapsible Tree with auto-sizing.)
-Reference code: Line34- Line127, Line394- Line553
-*/
+Reference code: Line37- Line130, Line397- Line556
 
+Detail: My work is based on Rob Schmuecker's work. 
+I used his code to implement the tree map(Line394- Line553), auto-sizing(Line101- Line112), Zoomable(Line89- Line112) and Collapsible(Line114- Line123)
+And my work is to give three views, weighting the score and show tooltips.
+*/
 
 treeJSON = d3.json("example_data.json", function(error, treeData) {
     var totalNodes = 0;
