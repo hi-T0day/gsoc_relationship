@@ -77,7 +77,7 @@ predict   | predict mode is used to predict the data without the label. You shou
 
 ##### Visualization
 ###### Generate the random final score
-[This](https://github.com/hi-T0day/gsoc_relationship/tree/master/visualization/final_relationships) is an alternative to generating final score data. You just need copy the code in `generate_json.js` to the website [Generate_Json](http://beta.json-generator.com/), and then click the generate button, you will get the JSON file.
+Considering that the final score cannot be generated from the primary table temporarily, [this](https://github.com/HolmesProcessing/gsoc_relationship/tree/master/final_relationships) is an alternative to generate final score data randomly. You just need copy the code in `generate_json.js` to the website [Generate_Json](http://beta.json-generator.com/), and then click the generate button, you will get the JSON file that web page can use to display the tree map.
 
 ###### Visualizaton page
 [This](http://120.77.40.25/newd3/index.html) is the web page to visualize the final score relationship.
