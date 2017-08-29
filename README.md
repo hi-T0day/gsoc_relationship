@@ -1,161 +1,93 @@
-# GSoC: Holmes Automated Malware Relationships (WIP)
+# GSoC: Holmes Automated Malware Relationships
 
 ## Introduction
 
 ![GitHub Logo](/images/architecture.png)
 *Figure 1: System Architecture*
 
-###### Overview
+#### Overview
 
-The purpose of this project is to develop a system capable of automatically
-identifying and managing the relationships between malware objects (IP addresses,
-Domains, Executables, Files etc). This system will use the analytic results as
+The purpose of this project is to develop a system capable of automatically identifying and managing the relationships
+between malware objects (IP addresses, Domains, Executables, Files etc). This system uses the analytic results as
 generated and stored by Holmes-Totem and Holmes-Totem-Dynamic. The goals are:
-
 
 1. Define the malware attributes necessary for relationship detection through querying.
 2. Implement Machine Learning algorithms for relationship detection.
 3. Implement an algorithm for aggregating and scoring the final relationships.
 4. Visualize relationships for the client.
 
-This system will perform malware relationship detection and scoring by using a range of queries and ML algorithms. We will implement and optimize some existing and new ML algorithms in order to ensure accuracy and efficiency. The whole relationship detection and rating process will go through two stages and at the end the user will receive a visual representation of the generated final relationships.
+This system performs malware relationship detection and scoring by using a range of queries and ML algorithms.
+We implement and optimize some existing and will use new ML algorithms in order to ensure accuracy and efficiency. The whole relationship detection and rating process goes through two stages and at the end the user receives a visual
+representation of the generated final relationships.
 
-###### Technology
+#### Technology
 
-We will use **Apache Spark** and **Tensorflow** for writing and running the
-necessary Queries and Machine Learning algorithms. The system will use a mix of
-batch and stream processing so **Spark Streaming** and/or **Apache
-Beam** are the framework of choice. **RabbitMQ** is the AMQP library of choice to
-support the streaming functionality. The data is stored in **Apache Cassandra**.
-Since this is a work in progress, there is a good chance that some new technologies and frameworks may be added along the way. This section will be updated accordingly.
+This project uses Apache Spark 2.0 to perform its analytics and Apache Cassandra 3.10 for its backend. The Machine Learning
+components of the project use the library [TensorFlowOnSpark](https://github.com/yahoo/TensorFlowOnSpark).
 
-## Defining Relationships
+#### Defining and Modeling Relationships
 
-The relationship detection process goes through two stages. The first stage
-(Offline Training) is
-going to generate the first level of relationships, while the second stage (Final Relationships Generate) will
-define the final relationships and their score by using the data created from
-the first stage as seed.
+[This](https://github.com/HolmesProcessing/gsoc_relationship/tree/master/primary_relationships) is the Spark Application responsible for generating
+the Knowledge Base and Primary Relationships for this project. This application performs batch analytics and storage. To run the application, first run the script in python to set up the necessary tables in Cassandra. Before running the application, please enter your configurations directly in the ```SparkConfig.scala``` file.
 
-From a technical standpoint, the analytics of the first stage happen independently of any user requests. The Query and ML components automatically perform all queries and ML algorithms for new malware analytic results based on specific events and triggers. All of the data generated at this stage is permanently stored on Cassandra using an appropriate schema. (During the rest of the section, I may refer to the primary relationships simply as relationships for simplicity’s sake.)
+***Warning***: Right now, I haven't found a way to read the typesafe config file during the spark routine. This problem should be fixed in the near future.
 
-###### Primary Relationships
+To test the application, create a fat jar by running ``` sbt assembly ```. Afterwards, you can run the application on your spark cluster using the following command:
 
-There are 4 types of artefacts in our database: IP addresses, Domains, Files, and Binary Executables. All of these types can potentially have a relationship with each other.
+```> /path/to/spark-submit --class com.holmesprocessing.analytics.relationship.PrimaryRelationshipsApplication relationship-assembly-1.0.jar```
 
-*For example:* An executable may issue a call to a specific domain who is associated with one or more IPs, which might be in turn related to other artefacts. In this scenario we already have identified several relationships:
-1. Executable <-> Domain
-2. Domain <-> IP
-3. (and by the transitive property of a bidirectional connection): Executable <-> IP
+#### Neural Network and Visualization
+##### Neural Network
+###### Preprocessing
+[This](https://github.com/HolmesProcessing/gsoc_relationship/tree/master/ml/pre-processing) is responsible for preprocessing the data. You just need to copy the code to the Zeppelin and run the code in this sequence that you can get the formatted and labelled data that can be used in the neural network.
 
-The whole purpose of this stage of the process is to look for meaningful primary relationships between the different artefacts based on the available analytic results, and store these relationships permanently. The following graph is a high level view of the potential relationship types between artefacts.
+```
+PreProcessingConfig.scala
+get_VT_signatures.scala
+get_labels_from_VT_signatures.scala
+get_features_from_peinfo.scala
+get_features_from_objdump.scala
+get_labels_features_by_join.scala
+```
+In addition, you also need to update the `x86Opcodes` and `prefix_suffix.txt` file to the hdfs. The storage path in hdfs is the root path of the current user. You can also change the path in the configuration file.
 
-![GitHub Logo](/images/Relationship_Types.png)
-*Figure 2: High-level view of artefact relationships*
+###### Neural network
+[This](https://github.com/hi-T0day/gsoc_relationship/tree/master/ml/NN) is the neural network algorithm for the data. At first, you should install the TensorflowOnSpark based the model of your Spark as the reference [here](https://github.com/yahoo/TensorFlowOnSpark/wiki).
 
-The relationships between artefacts will be defined in detail by the indicators that the Querying and ML components will detect/calculate. The first step of relationships discovery is finding good indicators of relationships between the different artefacts. These indicators are extracted by processing the analytic results from Holmes Totem (Dynamic). The components responsible for performing this analytic processes are the Query and ML components.
+***Warning***: The TensorFlowOnSpark cannot run well in the HDP YARN I was using because of the wrong configuration which I could not solve. While, in my local Standalone Spark Cluster I was able to run it with these versions: 
+`Spark version: “spark-2.1.0-bin-hadoop2.6” `
+`Hadoop version: “hadoop-2.6.2"`
 
-###### Final Relationships
+Executing the following command and setting the `FolderPath` to you file path, you can run the neural network algorithm.
+```
+spark-submit \
+ 			--master spark://master:7077 --py-files /FolderPath/NN_dist.py \
+ 			--conf spark.cores.max=3 --conf spark.task.cpus=1 \
+			--conf spark.executorEnv.JAVA_HOME="$JAVA_HOME" --conf spark.executorEnv.LD_LIBRARY_PATH="${JAVA_HOME}/jre/lib/amd64/server" \
+			--conf spark.executorEnv.CLASSPATH="$($HADOOP_HOME/bin/hadoop classpath --glob):${CLASSPATH}" \
+			/FolderPath/NN_spark.py
+```
+In the configuration file, there are three modes to choice, default is the `mode = train`.
 
-The final relationships define how objects in the system are associated with each other. These are created by analyzing the primary relationships and determining if and how strongly objects are related. Currently, we focus on relationships among malwares, domains, and IPs.  
-The final relationships consist of direct relationships and indirect relationships. The direct relationships can be retrieved directly from primary relationships, and the indirect relationships need other objects as the intermediary to transfer relationship. We seek to identify the following:  
+value              | description
+-------------------| ----------------------------
+train     | train mode is used to train a model for the neural network.
+inference | inference mode is used to show the accuracy of the model by labelled data. You should do this before you have trained a model.
+predict   | predict mode is used to predict the data without the label. You should do this before you have trained a model. 
 
-(The column: Final relationship has same content to the column: Direct relationship, so they are merged into one column.)
+##### Visualization
+###### Generate the random final score
+[This](https://github.com/hi-T0day/gsoc_relationship/tree/master/visualization/final_relationships) is an alternative to generating final score data. You just need copy the code in `generate_json.js` to the website [Generate_Json](http://beta.json-generator.com/), and then click the generate button, you will get the JSON file.
 
- Final relationship (Direct relationship) | Indirect relationships 
-  ----------------------------------------- | -------------
-  Malware -> Malware | \
-  Malware -> Domain  | 1. Malware -> Malware -> IP </br>2. Malware -> IP -> Domain 
-  Malware -> IP | 1. Malware -> Malware -> IP </br> 2. Malware -> Domain -> IP  
-  Domain -> Malware | 1. Domain -> Malware -> Malware </br> 2. Domain -> Domain -> Malware </br> 3. Domain -> IP -> Malware
-  Domain -> Domain | 1. Domain -> Malware -> Domain </br> 2. Domain -> IP -> Domain </br> 3. Domain -> Malware -> Malware -> Domain (optional)
-  Domain -> IP | 1. Domain -> Malware -> IP </br> 2. Domain -> Domain -> IP </br> 3. Domain -> IP -> IP
-  IP | All IP final relationships are similar to Domain final relationships
-  
-*Table 1: Definitions for Final relationships*
+###### Visualizaton page
+[This](http://120.77.40.25/newd3/index.html) is the web page to visualize the final score relationship.
+Here are the features of the web page:
 
-## Storage and Schema
-
-The storage schema will store the primary relationships for both the Query and the ML components. The schema should be easily and efficiently queried in order to provide stage 2 with all the necessary data with as little lag and computational effort as possible. The schema table will contain all the relationship_types and relationship_values generated by the Query and ML components. The relationship_types correspond to the ones that can be seen in Figure 2. The possible relationship_values can be seen in Table 1. Currently, Table 1 only includes potential relationship data based on the information provided by the Query Component. The table will be updated as the components are developed.
-
-The table schema developed in this stage should satisfy 2 main queries:
-
-1. **Q1:** Give me all relationships for obj_id
-2. **Q2:** Give me all objects that subscribe to relationship_value
-3. (**Q3:** Give me all objects that subscribe to relationship_type)
-
-![GitHub Logo](/images/schema.png)
-
-*Figure 3: Table View*
-
-The picture above represents the two main tables that should satisfy the queries from Stage 2.
-The original base table easily satisfies Q1. The table created through the MV can satisfy Q2.
-Even Q3 can be easily addressed with a slightly different MV.
-
-The relationship values for each primary relationship can be either direct values or references unique identifiers that can be used to query lookup tables for additional details on the relationship value. Lookup tables are generated for a specific subset of relationship values.
-
-
-## Implementation
-
-#### Offline Search and Training
-
-###### Query Component
-
-
-This component will look for atomic indicators of relationships. Atomic indicators are either identical values that can be shared by artefacts’ analytic results or calculated values that are used to provide some measure of similarity between artefacts. The Query component will generate the following relationship_types and values. These primary relationships will also have an assigned weight that can be used by the second stage of the process to calculate the final relationships.
-
- (relationship_type, service, relationship_value)  | weight_definition
- ------------------------------------------------- | -----------------
- (imphash_similar_to, PEInfo, imphash)  |   
- (pehash_similar_to, PEInfo, pehash) |  
- (signed_by, PEInfo, signature) |  
- (communicated_with_ip, CUCKOO, ip) |  
- (communicated_with_dom, CUCKOO, domain) |  
- (related_to_ip, DNSMeta, ip) |  
- (resolves_to_ip, DNSMeta, A Record )  |  
- (resolves_to_ip, DNSMeta, AAAA Record)  |  
- (related_to, DNSMeta, metadata)  |  
- (av_similar_to, VirusTotal, signature_similarity) |  
- (yara_similar_to, YARA, complex_AV_match) |  
-
-*Table 2: Definitions for primary relationships*
-
-###### ML Component
-
-This component will utilize ML algorithms to train models based on a labeled dataset and then assign every new unknown incoming artefact (depending on the type of artefact) to one of the trained malicious clusters/classes.
-
-#### Final Relationships Score Generator
-
-###### Direct relationship score algorithm
-
-The direct relationship score algorithm gives the similarity score between the object queried and the related object. 
-The Figure 4 below shows the design of this algorithm. The input: rel\_type scores are extracted from the primary relationship table. An algorithm tuning the weights of each score will be shown in the next paragraph. The final relationship score is the sum of (weight × rel\_type score).  
-This algorithm is also used to tune the weights of each score. The loss function is the sum of these final scores when the queried objects are in the different classifcations and their final score above a threshold. Finally, minimizing the loss measure by gradient descent to get proper weights.
-
-![GitHub Logo](/images/direct_relationship_score.png)
-
-*Figure 4: The Schematic diagram of direct relationship score algorithm*
-
-###### Indirect relationship score algorithm(WIP)
-
-The indirect relationship score algorithm considers two parts and is shown in Figure 5.  
-1). To a certain indirect relationship, it is consisted by direct relationships. We multiply the scores of direct relationships as indirect relationship score.  
-2). To related objects, the kind of relationships (including direct relationships and indirect relationships ) is one or more. We use the sigmoid function to the sum of these relationship scores.   
-
-![GitHub Logo](/images/indirect_relationship_score.png)
-
-*Figure 5: The Schematic diagram of indirect relationship score algorithm*
-
-## Visualization (WIP)
-
-#### Web Page
-
-###### Query Page
-
-Query page provides the searching for hash, domain, and IP and returns relationship page.
-
-###### Relationship Page 
-
-Relationship page is designed by D3.js and shows the relationship result.
-
-#### Implementation
+features           | description
+-------------------| ----------------------------
+Threshold View | When we set a threshold score, those nodes whose scores are greater than the threshold are displayed.
+Artefact View | When we click the artefact’s name, the nodes with this feature are added to ( or deleted from ) the map.
+Quick View | This view shows a histogram that displays the number of nodes in different segments of scores.
+Collapsible | When we click on the branch node, the branch node’s leaf nodes are folded and also the branch node is filled with steelblue.
+Zoomable | We can change the map scale by mouse wheel and also translate the map by dragging.
+Tooltip | When we move the mouse to the node, the tooltip shows useful information.
